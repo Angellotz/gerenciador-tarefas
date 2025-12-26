@@ -1,0 +1,20 @@
+# Pastas do .NET
+bin/
+obj/
+.vs/
+
+# Arquivos do Visual Studio
+*.user
+*.suo
+*.cache
+*.log
+
+# Entity Framework
+**/Migrations/**/bin/
+**/Migrations/**/obj/
+
+# Frontend
+node_modules/
+
+# Configurações locais
+appsettings.Development.json

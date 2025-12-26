@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Gerenciador de Tarefas</h1>
+
+    <div class="form">
+        <input type="text" id="titulo" placeholder="Título da tarefa">
+        <input type="text" id="descricao" placeholder="Descrição">
+        <button onclick="criarTarefa()">Adicionar</button>
+    </div>
+
+<select id="filtroStatus" onchange="carregarTarefas()">
+    <option value="">Todas</option>
+    <option value="0">Pendente</option>
+    <option value="1">Em Progresso</option>
+    <option value="2">Concluída</option>
+</select>
+
+
+    <ul id="listaTarefas"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
