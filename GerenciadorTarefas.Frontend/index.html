@@ -1,31 +1,119 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-tasks"></i>
+                    <h1>Gerenciador de Tarefas</h1>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="total-tasks">0</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="pending-tasks">0</span>
+                        <span class="stat-label">Pendentes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="progress-tasks">0</span>
+                        <span class="stat-label">Em Progresso</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="completed-tasks">0</span>
+                        <span class="stat-label">Concluídas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <h1>Gerenciador de Tarefas</h1>
-
-    <div class="form">
-        <input type="text" id="titulo" placeholder="Título da tarefa">
-        <input type="text" id="descricao" placeholder="Descrição">
-        <button onclick="criarTarefa()">Adicionar</button>
+    <div class="container">
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-plus-circle"></i> Nova Tarefa</h2>
+                    <div class="form-group">
+                        <label for="titulo">Título da Tarefa</label>
+                        <input type="text" id="titulo" class="form-control" placeholder="Ex: Reunião com a equipe">
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" class="form-control" rows="4" placeholder="Descreva os detalhes da tarefa..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" class="form-control">
+                            <option value="0">Pendente</option>
+                            <option value="1">Em Progresso</option>
+                            <option value="2">Concluída</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-block" onclick="criarTarefa()">
+                        <i class="fas fa-plus"></i> Adicionar Tarefa
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-chart-pie"></i> Status das Tarefas</h2>
+                    <div class="status-badges">
+                        <div class="status-badge">
+                            <div class="badge-color badge-pendente"></div>
+                            <span>Pendente</span>
+                        </div>
+                        <div class="status-badge">
+                            <div class="badge-color badge-em-progresso"></div>
+                            <span>Em Progresso</span>
+                        </div>
+                        <div class="status-badge">
+                            <div class="badge-color badge-concluida"></div>
+                            <span>Concluída</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-list-check"></i> Suas Tarefas</h2>
+                    
+                    <div class="filters">
+                        <select id="filtroStatus" class="filter-select" onchange="carregarTarefas()">
+                            <option value="">Todas as Tarefas</option>
+                            <option value="0">Pendentes</option>
+                            <option value="1">Em Progresso</option>
+                            <option value="2">Concluídas</option>
+                        </select>
+                        
+                        <select id="ordenarTarefas" class="filter-select" onchange="carregarTarefas()">
+                            <option value="data">Ordenar por Data</option>
+                            <option value="status">Ordenar por Status</option>
+                            <option value="titulo">Ordenar por Título</option>
+                        </select>
+                    </div>
+                    
+                    <div class="tasks-container">
+                        <ul id="listaTarefas" class="task-list">
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+             <p>Gerenciador de Tarefas &copy; 2025</p>
+        </footer>
     </div>
-
-<select id="filtroStatus" onchange="carregarTarefas()">
-    <option value="">Todas</option>
-    <option value="0">Pendente</option>
-    <option value="1">Em Progresso</option>
-    <option value="2">Concluída</option>
-</select>
-
-
-    <ul id="listaTarefas"></ul>
 
     <script src="script.js"></script>
 </body>

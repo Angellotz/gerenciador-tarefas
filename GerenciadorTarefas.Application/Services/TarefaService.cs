@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using GerenciadorTarefas.Domain.Entities;
 using GerenciadorTarefas.Domain.Interfaces;
-
 
 namespace GerenciadorTarefas.Application.Services;
 
@@ -32,8 +28,20 @@ public class TarefaService : ITarefaService
         await _repository.AdicionarAsync(tarefa);
     }
 
-    public async Task AtualizarAsync(Tarefa tarefa)
+    public async Task AtualizarAsync(int id, string titulo, string descricao, StatusTarefa status)
     {
+        var tarefa = await _repository.ObterPorIdAsync(id);
+        if (tarefa == null)
+            throw new Exception("Tarefa não encontrada");
+
+        tarefa.Titulo = titulo;
+        tarefa.Descricao = descricao;
+
+        if (status == StatusTarefa.Concluida)
+            tarefa.Concluir();
+        else
+            tarefa.Reabrir();
+
         await _repository.AtualizarAsync(tarefa);
     }
 

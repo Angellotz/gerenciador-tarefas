@@ -1,4 +1,3 @@
-using System;
 using GerenciadorTarefas.Domain.Entities;
 using GerenciadorTarefas.Domain.Interfaces;
 using GerenciadorTarefas.Infrastructure.Data;
