@@ -339,7 +339,7 @@ async function salvarEdicao(id) {
         
         const tarefaAtual = await buscarTarefa(id);
         if (!tarefaAtual) {
-            mostrarMensagem('Tarefa não encontrada', 'erro');
+            mostrarMensagem('Tarefa não encontrada!', 'erro');
             return;
         }
         
