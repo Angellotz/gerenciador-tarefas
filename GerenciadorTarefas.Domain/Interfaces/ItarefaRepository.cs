@@ -10,4 +10,5 @@ public interface ITarefaRepository
     Task AdicionarAsync(Tarefa tarefa);
     Task AtualizarAsync(Tarefa tarefa);
     Task RemoverAsync(Tarefa tarefa);
+    Task<bool> ExisteTarefaComTituloIgualAsync(string titulo); 
 }

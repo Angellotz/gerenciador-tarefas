@@ -116,30 +116,33 @@ async function criarTarefa() {
         return;
     }
     
-    try {
-        const novaTarefa = {
-            titulo: titulo,
-            descricao: descricao,
-            status: parseInt(status)
-            
-        };
-        
-        await fetchAPI(`${API_BASE_URL}${API_ENDPOINT}`, {
-            method: 'POST',
-            body: JSON.stringify(novaTarefa)
-        });
-        
+    const novaTarefa = {
+        titulo: titulo,
+        descricao: descricao,
+        status: parseInt(status)
+    };
+    
+    const response = await fetch(`${API_BASE_URL}${API_ENDPOINT}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(novaTarefa)
+    });
+    
+    if (response.ok) {
         document.getElementById('titulo').value = '';
         document.getElementById('descricao').value = '';
         document.getElementById('status').value = '0';
-        
         await carregarTarefas();
-        
         mostrarMensagem('Tarefa criada com sucesso!', 'sucesso');
-        
-    } catch (error) {
-        console.error('Erro ao criar tarefa:', error);
+        return;
     }
+    
+    if (response.status === 400) {
+        mostrarMensagem(`Já existe uma tarefa com o título "${titulo}".`, 'erro');
+        return;
+    }
+    
+    mostrarMensagem(`Erro ao criar tarefa (Código: ${response.status})`, 'erro');
 }
 
 async function carregarTarefas() {
@@ -147,7 +150,6 @@ async function carregarTarefas() {
     const ordenarPor = document.getElementById('ordenarTarefas').value;
     const listaTarefas = document.getElementById('listaTarefas');
     
-    // Mostrar loading
     listaTarefas.innerHTML = '<div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>Carregando tarefas...</p></div>';
     
     try {
@@ -267,7 +269,7 @@ async function alterarStatus(id, novoStatus) {
         const tarefaAtual = await fetchAPI(`${API_BASE_URL}${API_ENDPOINT}/${id}`);
         
         if (!tarefaAtual) {
-            mostrarMensagem('Tarefa não encontrada', 'erro');
+            mostrarMensagem('Tarefa não encontrada!', 'erro');
             return;
         }
         

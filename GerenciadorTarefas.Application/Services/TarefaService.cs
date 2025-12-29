@@ -25,6 +25,11 @@ public class TarefaService : ITarefaService
 
     public async Task CriarAsync(Tarefa tarefa)
     {
+        var existe = await _repository.ExisteTarefaComTituloIgualAsync(tarefa.Titulo);
+
+        if (existe)
+            throw new InvalidOperationException("Já existe uma tarefa com este título.");
+
         await _repository.AdicionarAsync(tarefa);
     }
 

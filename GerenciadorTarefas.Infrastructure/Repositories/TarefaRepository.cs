@@ -36,6 +36,11 @@ public class TarefaRepository : ITarefaRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task<bool> ExisteTarefaComTituloIgualAsync(string titulo)
+    {
+        return await _context.Tarefas.AnyAsync(t => t.Titulo.ToLower() == titulo.ToLower());
+    }
+
     public async Task RemoverAsync(Tarefa tarefa)
     {
         _context.Tarefas.Remove(tarefa);

@@ -33,8 +33,15 @@ namespace GerenciadorTarefas.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Criar(Tarefa tarefa)
         {
-            await _tarefaService.CriarAsync(tarefa);
-            return CreatedAtAction(nameof(ObterPorId), new { id = tarefa.Id }, tarefa);
+            try
+            {
+                await _tarefaService.CriarAsync(tarefa);
+                return CreatedAtAction(nameof(ObterPorId), new { id = tarefa.Id }, tarefa);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
