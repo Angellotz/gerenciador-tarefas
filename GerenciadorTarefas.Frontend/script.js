@@ -88,7 +88,7 @@ document.head.appendChild(estiloAnimacao);
 document.addEventListener('DOMContentLoaded', function() {
     carregarTarefas();
     
-    // Permitir adicionar tarefa pressionando Enter 
+    // adicionar tarefa pressionando enter 
     document.getElementById('titulo').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             criarTarefa();
