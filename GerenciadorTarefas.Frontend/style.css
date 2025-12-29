@@ -385,6 +385,16 @@ footer {
     background-color: var(--success-color);
 }
 
+.task-meta {
+    margin-top: 10px;
+}
+
+.data-item {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #666;
+}
 @media (max-width: 768px) {
     .header-content {
         flex-direction: column;

@@ -8,6 +8,6 @@ public interface ITarefaService
     Task<IEnumerable<Tarefa>> ObterTodasAsync();
     Task<Tarefa?> ObterPorIdAsync(int id);
     Task CriarAsync(Tarefa tarefa);
-    Task AtualizarAsync(int id, string titulo, string descricao, StatusTarefa status);
+    Task AtualizarAsync(int id, string titulo, string? descricao, StatusTarefa status);
     Task DeletarAsync(int id);
 }

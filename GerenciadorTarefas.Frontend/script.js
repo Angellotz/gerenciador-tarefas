@@ -195,9 +195,9 @@ async function carregarTarefas() {
                     <div class="task-title">${tarefa.titulo}</div>
                     <div class="task-desc">${tarefa.descricao || 'Sem descrição'}</div>
                     <div class="task-meta">
-                        <small>Criada em: ${formatarData(tarefa.dataCriacao)}</small>
-                        ${tarefa.dataConclusao ? `<small>Concluída em: ${formatarData(tarefa.dataConclusao)}</small>` : ''}
-                    </div>
+                    <div class="data-item">Criada em: ${formatarData(tarefa.dataCriacao)}</div>
+                    ${tarefa.dataConclusao ? `<div class="data-item">Concluída em: ${formatarData(tarefa.dataConclusao)}</div>` : ''}
+                </div>
                 </div>
                 <div class="task-actions">
                     <span class="task-status status-${statusInfo.class}">${statusInfo.text}</span>

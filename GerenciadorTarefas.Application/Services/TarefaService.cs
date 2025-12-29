@@ -28,7 +28,7 @@ public class TarefaService : ITarefaService
         await _repository.AdicionarAsync(tarefa);
     }
 
-    public async Task AtualizarAsync(int id, string titulo, string descricao, StatusTarefa status)
+    public async Task AtualizarAsync(int id, string titulo, string? descricao, StatusTarefa status)
     {
         var tarefa = await _repository.ObterPorIdAsync(id);
         if (tarefa == null)
@@ -36,11 +36,7 @@ public class TarefaService : ITarefaService
 
         tarefa.Titulo = titulo;
         tarefa.Descricao = descricao;
-
-        if (status == StatusTarefa.Concluida)
-            tarefa.Concluir();
-        else
-            tarefa.Reabrir();
+        tarefa.AlterarStatus(status);
 
         await _repository.AtualizarAsync(tarefa);
     }
